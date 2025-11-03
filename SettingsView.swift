@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("showMenuBarIcon") private var showMenuBarIcon = true
+    @AppStorage("useTextDisplay") private var useTextDisplay = true
     let appDelegate: AppDelegate?
 
     init(appDelegate: AppDelegate? = nil) {
@@ -11,33 +11,66 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Show icon in menu bar", isOn: Binding(
-                    get: { showMenuBarIcon },
-                    set: { newValue in
-                        print("DEBUG: Toggle changed to \(newValue)")
-                        showMenuBarIcon = newValue
-                        print("DEBUG: showMenuBarIcon set to \(showMenuBarIcon)")
-                        print("DEBUG: About to call updateMenuBarIcon")
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("Display mode:")
+                        Spacer()
+                    }
 
-                        // Call immediately without delay
-                        if let delegate = appDelegate {
-                            print("DEBUG: Got appDelegate directly, calling update")
-                            delegate.updateStatusItemVisibility()
-                        } else {
-                            print("DEBUG: ERROR - appDelegate is nil")
+                    // Text mode option with preview
+                    Button(action: {
+                        useTextDisplay = true
+                        appDelegate?.updateMenuBarDisplay()
+                    }) {
+                        HStack {
+                            Image(systemName: useTextDisplay ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(useTextDisplay ? .blue : .gray)
+                            Text("Text")
+                            Spacer()
+                            Text("Ethernet")
+                                .font(.system(.body))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(4)
                         }
                     }
-                ))
+                    .buttonStyle(.plain)
 
-                Text("When enabled, a star icon will appear in your menu bar.")
+                    // Icon mode option with preview
+                    Button(action: {
+                        useTextDisplay = false
+                        appDelegate?.updateMenuBarDisplay()
+                    }) {
+                        HStack {
+                            Image(systemName: !useTextDisplay ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(!useTextDisplay ? .blue : .gray)
+                            Text("Icon")
+                            Spacer()
+                            HStack(spacing: 8) {
+                                EthernetIconView(isConnected: true, size: 16)
+                                Text("/")
+                                    .foregroundColor(.secondary)
+                                EthernetIconView(isConnected: false, size: 16)
+                            }
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(4)
+                        }
+                    }
+                    .buttonStyle(.plain)
+                }
+
+                Text("Brightness indicates connection status.")
                     .font(.caption)
                     .foregroundColor(.secondary)
             } header: {
-                Label("Menu Bar", systemImage: "menubar.rectangle")
+                Label("Display", systemImage: "eye")
             }
         }
         .formStyle(.grouped)
-        .frame(width: 450, height: 200)
+        .frame(width: 450, height: 240)
     }
 
 }
