@@ -1,0 +1,94 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v1.0.0
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: macos-26
+
+    permissions:
+      contents: write  # Needed to create releases
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Show Xcode version
+      run: xcodebuild -version
+
+    - name: Build release
+      run: |
+        xcodebuild clean build \
+          -project EthernetConnectionStatus.xcodeproj \
+          -scheme EthernetConnectionStatus \
+          -configuration Release \
+          -derivedDataPath ./DerivedData \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+
+    - name: Create application bundle
+      run: |
+        mkdir -p ./release
+        cp -r "./DerivedData/Build/Products/Release/Ethernet Connection Status.app" "./release/"
+
+        # Create a simple README for the release
+        cat > "./release/README.txt" << 'EOF'
+        Ethernet Connection Status v${{ steps.get_version.outputs.VERSION }}
+
+        Installation:
+        1. Drag "Ethernet Connection Status.app" to your Applications folder
+        2. Right-click the app and select "Open" (first time only)
+        3. Click "Open" in the security dialog
+        4. The app will appear in your menu bar
+
+        Note: This is an unsigned app. macOS will show a security warning on first launch.
+        You must right-click → Open to bypass Gatekeeper.
+
+        For more information: https://github.com/${{ github.repository }}
+        EOF
+
+    - name: Create ZIP archive
+      run: |
+        cd release
+        zip -r "../EthernetConnectionStatus-v${{ steps.get_version.outputs.VERSION }}.zip" .
+        cd ..
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          EthernetConnectionStatus-v${{ steps.get_version.outputs.VERSION }}.zip
+        body: |
+          ## Ethernet Connection Status v${{ steps.get_version.outputs.VERSION }}
+
+          ### Installation
+          1. Download the `.zip` file below
+          2. Extract and drag the app to your Applications folder
+          3. Right-click the app and select "Open" (first time only)
+          4. The app will appear in your menu bar
+
+          ### What's New
+          <!-- Add release notes here -->
+
+          ### Note
+          This is an **unsigned** build. On first launch:
+          - macOS will show a security warning
+          - Right-click the app → "Open" to bypass Gatekeeper
+          - You only need to do this once
+
+          ---
+
+          **Requirements:** macOS 13.0 (Ventura) or later
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
