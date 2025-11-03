@@ -10,10 +10,24 @@ A native macOS menu bar app that monitors your ethernet connection status in rea
 - **Native macOS Design**: SwiftUI-based settings with native macOS styling
 - **Menu Bar Only**: Runs as a menu bar-only app (no dock icon)
 
+## Installation (Pre-built Release)
+
+1. Download the latest release ZIP from [GitHub Releases](https://github.com/montanaflynn/EthernetConnectionStatus/releases)
+2. Extract the ZIP file
+3. **Remove the quarantine attribute** (required for unsigned apps):
+   ```bash
+   xattr -cr "/path/to/Ethernet Connection Status.app"
+   ```
+   Replace `/path/to/` with the actual location of the extracted app
+4. Drag the app to your Applications folder
+5. Launch the app - it will appear in your menu bar
+
+**Note:** This app is unsigned, so macOS will block it by default. The `xattr` command removes the quarantine flag that prevents unsigned apps from opening.
+
 ## Requirements
 
 - **macOS 13.0 (Ventura) or later**
-- Xcode 15.0+ for building
+- Xcode 15.0+ for building from source
 
 ## Building
 

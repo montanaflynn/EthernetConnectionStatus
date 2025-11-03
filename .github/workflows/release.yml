@@ -45,13 +45,19 @@ jobs:
         Ethernet Connection Status v${{ steps.get_version.outputs.VERSION }}
 
         Installation:
-        1. Drag "Ethernet Connection Status.app" to your Applications folder
-        2. Right-click the app and select "Open" (first time only)
-        3. Click "Open" in the security dialog
-        4. The app will appear in your menu bar
+        1. Extract this ZIP file
+        2. Open Terminal and run this command to remove the quarantine attribute:
 
-        Note: This is an unsigned app. macOS will show a security warning on first launch.
-        You must right-click → Open to bypass Gatekeeper.
+           xattr -cr "/path/to/Ethernet Connection Status.app"
+
+           (Replace /path/to/ with the actual path where you extracted the app)
+
+        3. Drag "Ethernet Connection Status.app" to your Applications folder
+        4. Launch the app - it will appear in your menu bar
+
+        IMPORTANT: This app is unsigned. macOS will block it from opening unless you
+        remove the quarantine attribute using the command above. Right-clicking and
+        selecting "Open" does NOT work for this app - you must use the xattr command.
 
         For more information: https://github.com/${{ github.repository }}
         EOF
@@ -72,18 +78,24 @@ jobs:
 
           ### Installation
           1. Download the `.zip` file below
-          2. Extract and drag the app to your Applications folder
-          3. Right-click the app and select "Open" (first time only)
-          4. The app will appear in your menu bar
+          2. Extract the ZIP file
+          3. **Remove quarantine attribute** - Open Terminal and run:
+             ```bash
+             xattr -cr "/path/to/Ethernet Connection Status.app"
+             ```
+             (Replace `/path/to/` with the actual location of the extracted app)
+          4. Drag the app to your Applications folder
+          5. Launch the app - it will appear in your menu bar
 
           ### What's New
           <!-- Add release notes here -->
 
-          ### Note
-          This is an **unsigned** build. On first launch:
-          - macOS will show a security warning
-          - Right-click the app → "Open" to bypass Gatekeeper
-          - You only need to do this once
+          ### Important Note
+          This is an **unsigned** build. macOS will block it from opening with a "damaged" warning.
+
+          **You MUST use the `xattr` command above** - Right-clicking and selecting "Open" does NOT work for this app.
+
+          The command removes the quarantine flag that macOS applies to downloaded files.
 
           ---
 
