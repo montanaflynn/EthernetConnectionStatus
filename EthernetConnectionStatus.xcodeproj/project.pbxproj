@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,17 +13,39 @@
 		0019 /* EthernetIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020 /* EthernetIcon.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F838915C2EB9598800949D59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000B;
+			remoteInfo = EthernetConnectionStatus;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0002 /* MacMenuBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacMenuBarApp.swift; sourceTree = "<group>"; };
 		0004 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0006 /* EthernetConnectionStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EthernetConnectionStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0006 /* EthernetConnectionStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = EthernetConnectionStatus.app; path = "Ethernet Connection Status.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0018 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		0020 /* EthernetIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthernetIcon.swift; sourceTree = "<group>"; };
+		F83891582EB9598800949D59 /* EthernetConnectionStatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EthernetConnectionStatusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F83891592EB9598800949D59 /* EthernetConnectionStatusTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = EthernetConnectionStatusTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		0007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F83891552EB9598800949D59 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				0009 /* . */,
+				F83891592EB9598800949D59 /* EthernetConnectionStatusTests */,
 				000A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				0006 /* EthernetConnectionStatus.app */,
+				F83891582EB9598800949D59 /* EthernetConnectionStatusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,6 +105,29 @@
 			productReference = 0006 /* EthernetConnectionStatus.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F83891572EB9598800949D59 /* EthernetConnectionStatusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F83891602EB9598800949D59 /* Build configuration list for PBXNativeTarget "EthernetConnectionStatusTests" */;
+			buildPhases = (
+				F83891542EB9598800949D59 /* Sources */,
+				F83891552EB9598800949D59 /* Frameworks */,
+				F83891562EB9598800949D59 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F838915D2EB9598800949D59 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F83891592EB9598800949D59 /* EthernetConnectionStatusTests */,
+			);
+			name = EthernetConnectionStatusTests;
+			packageProductDependencies = (
+			);
+			productName = EthernetConnectionStatusTests;
+			productReference = F83891582EB9598800949D59 /* EthernetConnectionStatusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -88,8 +135,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					F83891572EB9598800949D59 = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 000B;
+					};
+				};
 			};
 			buildConfigurationList = 0010 /* Build configuration list for PBXProject "EthernetConnectionStatus" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -105,12 +158,20 @@
 			projectRoot = "";
 			targets = (
 				000B /* EthernetConnectionStatus */,
+				F83891572EB9598800949D59 /* EthernetConnectionStatusTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		000E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F83891562EB9598800949D59 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,7 +192,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F83891542EB9598800949D59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F838915D2EB9598800949D59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000B /* EthernetConnectionStatus */;
+			targetProxy = F838915C2EB9598800949D59 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0011 /* Debug */ = {
@@ -308,6 +384,46 @@
 			};
 			name = Release;
 		};
+		F838915E2EB9598800949D59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Persoonal.EthernetConnectionStatusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ethernet Connection Status.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ethernet Connection Status";
+			};
+			name = Debug;
+		};
+		F838915F2EB9598800949D59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Persoonal.EthernetConnectionStatusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ethernet Connection Status.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ethernet Connection Status";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -325,6 +441,15 @@
 			buildConfigurations = (
 				0011 /* Debug */,
 				0012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F83891602EB9598800949D59 /* Build configuration list for PBXNativeTarget "EthernetConnectionStatusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F838915E2EB9598800949D59 /* Debug */,
+				F838915F2EB9598800949D59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,0 +1,65 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+
+    - name: Show Xcode version
+      run: xcodebuild -version
+
+    - name: Build
+      run: |
+        xcodebuild clean build \
+          -project EthernetConnectionStatus.xcodeproj \
+          -scheme EthernetConnectionStatus \
+          -configuration Debug \
+          -destination 'platform=macOS' \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+
+    - name: Run tests
+      run: |
+        xcodebuild test \
+          -project EthernetConnectionStatus.xcodeproj \
+          -scheme EthernetConnectionStatus \
+          -destination 'platform=macOS' \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+      continue-on-error: true
+
+    - name: Archive build artifacts
+      if: success()
+      run: |
+        xcodebuild archive \
+          -project EthernetConnectionStatus.xcodeproj \
+          -scheme EthernetConnectionStatus \
+          -configuration Release \
+          -archivePath ./build/EthernetConnectionStatus.xcarchive \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO
+      continue-on-error: true
+
+    - name: Upload build artifacts
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: EthernetConnectionStatus
+        path: build/
+        retention-days: 7
