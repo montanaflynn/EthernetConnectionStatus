@@ -14,17 +14,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # macOS 14
-          - name: macOS 14 Intel
-            os: macos-14-large
+          # macOS 14 Sonoma (ARM64, free)
           - name: macOS 14 ARM64
             os: macos-14
-          # macOS 15
-          - name: macOS 15 Intel
-            os: macos-15-large
+          # macOS 15 Sequoia (ARM64, free)
           - name: macOS 15 ARM64
             os: macos-15
-          # macOS 26
+          # macOS 26 Tahoe (ARM64, free)
           - name: macOS 26 ARM64
             os: macos-26
             run_tests: true
