@@ -14,9 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # macOS 14 Sonoma (ARM64, free)
-          - name: macOS 14 ARM64
-            os: macos-14
           # macOS 15 Sequoia (ARM64, free)
           - name: macOS 15 ARM64
             os: macos-15
