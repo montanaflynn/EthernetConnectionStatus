@@ -8,21 +8,26 @@ on:
 
 jobs:
   build:
-    name: Build and Test on ${{ matrix.os }}
+    name: Build and Test on ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, macos-14, macos-15, macos-26]
         include:
-          - os: macos-13
-            xcode: latest-stable
-          - os: macos-14
-            xcode: latest-stable
-          - os: macos-15
-            xcode: latest-stable
-          - os: macos-26
-            xcode: latest
+          # macOS 14
+          - name: macOS 14 Intel
+            os: macos-14-large
+          - name: macOS 14 ARM64
+            os: macos-14
+          # macOS 15
+          - name: macOS 15 Intel
+            os: macos-15-large
+          - name: macOS 15 ARM64
+            os: macos-15
+          # macOS 26
+          - name: macOS 26 ARM64
+            os: macos-26
+            run_tests: true
 
     steps:
     - name: Checkout code
@@ -43,7 +48,7 @@ jobs:
           CODE_SIGNING_ALLOWED=NO
 
     - name: Run tests
-      if: matrix.os == 'macos-26'
+      if: matrix.run_tests == true
       run: |
         xcodebuild test \
           -project EthernetConnectionStatus.xcodeproj \
@@ -71,6 +76,6 @@ jobs:
       if: success()
       uses: actions/upload-artifact@v4
       with:
-        name: EthernetConnectionStatus-${{ matrix.os }}
+        name: EthernetConnectionStatus-${{ matrix.name }}
         path: build/
         retention-days: 7
