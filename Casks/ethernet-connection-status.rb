@@ -1,6 +1,6 @@
 cask "ethernet-connection-status" do
-  version "0.0.4"
-  sha256 "ef72900f1695bc15ba082160e0905cab7ecce6474c5c2955abbbe45d7d5402ca"
+  version "0.0.5"
+  sha256 "0291c91588ce9e23a734bdac7a68c738d4076901e36f463a94cbecf411c9994e"
 
   url "https://github.com/montanaflynn/EthernetConnectionStatus/releases/download/v#{version}/EthernetConnectionStatus-v#{version}.zip"
   name "Ethernet Connection Status"
