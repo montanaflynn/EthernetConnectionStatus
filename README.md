@@ -10,7 +10,17 @@ A native macOS menu bar app that monitors your ethernet connection status in rea
 - **Native macOS Design**: SwiftUI-based settings with native macOS styling
 - **Menu Bar Only**: Runs as a menu bar-only app (no dock icon)
 
-## Installation (Pre-built Release)
+## Installation
+
+### Option 1: Homebrew (Recommended)
+
+```bash
+brew install montanaflynn/EthernetConnectionStatus/ethernet-connection-status
+```
+
+The Homebrew installation automatically handles the quarantine attribute removal for you.
+
+### Option 2: Manual Installation
 
 1. Download the latest release ZIP from [GitHub Releases](https://github.com/montanaflynn/EthernetConnectionStatus/releases)
 2. Extract the ZIP file
