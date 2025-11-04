@@ -15,7 +15,8 @@ A native macOS menu bar app that monitors your ethernet connection status in rea
 ### Option 1: Homebrew (Recommended)
 
 ```bash
-brew install montanaflynn/EthernetConnectionStatus/ethernet-connection-status
+brew tap montanaflynn/EthernetConnectionStatus https://github.com/montanaflynn/EthernetConnectionStatus
+brew install --cask ethernet-connection-status
 ```
 
 The Homebrew installation automatically handles the quarantine attribute removal for you.

@@ -105,7 +105,8 @@ jobs:
 
           #### Option 1: Homebrew (Recommended)
           ```bash
-          brew install montanaflynn/EthernetConnectionStatus/ethernet-connection-status
+          brew tap montanaflynn/EthernetConnectionStatus https://github.com/montanaflynn/EthernetConnectionStatus
+          brew install --cask ethernet-connection-status
           ```
 
           #### Option 2: Manual Installation
