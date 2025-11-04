@@ -93,7 +93,7 @@ class NetworkMonitor: ObservableObject {
         NotificationCenter.default.post(name: NSNotification.Name("NetworkStatusDidUpdate"), object: nil)
     }
 
-    private func isLikelyEthernet(interface: NetworkInterface) -> Bool {
+    func isLikelyEthernet(interface: NetworkInterface) -> Bool {
         let name = interface.name
 
         // en0 on most Macs is WiFi, but on Mac Pro/Mac Studio with ethernet, en0 is ethernet
