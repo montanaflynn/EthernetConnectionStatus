@@ -17,8 +17,7 @@ cask "ethernet-connection-status" do
   # Remove quarantine attribute automatically on installation
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/Ethernet Connection Status.app"],
-                   sudo: false
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Ethernet Connection Status.app"]
   end
 
   zap trash: [
